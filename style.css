@@ -83,6 +83,36 @@ input:focus{
   padding: 5rem;
 }
 
+.empty-image{
+    height: 250px;
+    width: 328px;
+    background-color: #d3d3dd;
+    animation-duration: 2s;
+    animation-name: animate;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+}
+
+.empty-text{
+  height: 30px;
+  width: 290px;
+  background-color: #d3d3d3;
+  animation-duration: 2s;
+  animation-name: animate;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+}
+
+
+@keyframes animate {
+  from {
+      background-color: #eeeeee;
+  }
+  to {
+      background-color: #d3d3d3;
+  }
+}
+
 /* SPIN */
 .spin {
   display: inline-block;

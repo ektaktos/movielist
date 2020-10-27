@@ -51,14 +51,14 @@ function getMovies(page){
   if (!page) {
     page = 1;
   }
-  $.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=9084eae9f770e006ebcba95dbd474e28&language=en-US&page=${page}`, (data) => {
-    // console.log(data)
+  $.get(`https://moviedb-test.herokuapp.com/api/movies?page=${page}`, (res) => {
     this.currentPage = page;
-    this.totalPages = data.total_pages;
-    this.totalResults = data.total_results;
+    this.totalPages = res.data.total_pages;
+    this.totalResults = res.data.total_results;
     $('#results').text(this.totalResults)
     $('#movieCards').empty();
-    $.each(data.results, (index,value) => {
+    if (this.totalResults > 0) {
+    $.each(res.data.results, (index,value) => {
       var card = `<div class="col-sm-3 mb-4">
       <div class="card h-100">
         <img class="card-img-top" src="https://image.tmdb.org/t/p/w500${value.poster_path}" alt="">
@@ -76,6 +76,22 @@ function getMovies(page){
       // console.log(value);
     });
     $('#overlay').hide();
+  }else{
+    var card = `<div class="col-sm-12 mb-4">
+      <div class="empty-search">
+       <h2> No Result Found</h2>
+      </div>
+    </div>`;
+    var backButton = `<li class="page-item mr-3">
+    <a class="page-link" href="" aria-label="Previous">
+      <span aria-hidden="true">&laquo; Reload</span>
+      <span class="sr-only">Previous</span>
+    </a>
+    </li>`
+    $('#movieCards').append(card);
+    $('#pagination').empty();
+    $('#pagination').append(backButton);
+  }
   })  
 }
 
@@ -85,15 +101,15 @@ function searchMovie(page = null){
   if (!page) {
     page = 1;
   }
-  $.get(`https://api.themoviedb.org/3/search/movie?api_key=9084eae9f770e006ebcba95dbd474e28&language=en-US&page=${page}&query=${this.query}`, (data) => {
+  $.get(`https://moviedb-test.herokuapp.com/api/search?page=${page}&text=${this.query}`, (res) => {
     this.currentPage = page;
-    this.totalPages = data.total_pages;
-    this.totalResults = data.total_results; 
+    this.totalPages = res.data.total_pages;
+    this.totalResults = res.data.total_results; 
     $('#title').text(`Showing results for "${this.query}"`)
     $('#results').text(this.totalResults)
     $('#movieCards').empty()
     if (this.totalResults > 0) {
-      $.each(data.results, (index,value) => {
+      $.each(res.data.results, (index,value) => {
         var card = `<div class="col-sm-3 mb-4">
         <div class="card h-100">
           <img class="card-img-top" src="https://image.tmdb.org/t/p/w500${value.poster_path}" onerror="this.src='./images/missing.png'" alt="">
@@ -102,7 +118,7 @@ function searchMovie(page = null){
             <p class="card-text">${value.overview}</p>
             <div class="d-flex justify-content-between">
               <span class="card-text">${moment(value.release_date).format('MM/DD/YYYY')}</span>
-              <span class="card-text"><img src="./images/star.png" width="18px" height="18px">${value.vote_average}</span>
+              <span class="card-text rating"><img src="./images/star.png" width="18px" height="18px">${value.vote_average}</span>
             </div>
           </div>
         </div>
