@@ -1,0 +1,135 @@
+html, body{
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+.navbar{
+  margin-bottom: 0;
+  background-color: #FFF;
+}
+.jumbotron{
+  background-color: #37517e;
+  color: #FFF;
+  border-radius: 0;
+}
+.jumbotron p{
+  font-size: 12px;
+}
+
+.card .card-img-top{
+  object-fit: cover;
+  height: 250px;
+}
+
+.card:hover .card-img-top{
+  object-fit: contain;
+}
+.card:hover .card-text{
+  display: block;
+  overflow: visible;
+}
+
+.card-title{
+  font-size: 16px;
+}
+
+.card-text{
+  font-size: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.rating{
+  display: flex;
+  align-items: center;
+}
+.rating img{
+  margin-right: .25rem;
+  width: 18px;
+  height: 18px;
+}
+
+.paginationSection nav{
+  text-align: center;
+  align-items: center;
+}
+
+.form-inline{
+  display: flex;
+  border: 2px solid #d3d3d3;
+  border-radius: 5px;
+  background-color: #FFF;
+  width: 30rem;
+}
+.form-inline .form-control{
+  width: 86%;
+}
+input{
+  border: none !important;
+  outline: none !important;
+}
+input:active{
+  outline: none !important;
+}
+input:focus{
+  outline: none !important;
+}
+
+.empty-search{
+  text-align: center;
+  color: #d3d3d3;
+  padding: 5rem;
+}
+
+/* SPIN */
+.spin {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255,255,255,.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+@keyframes spin {
+    to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    to { -webkit-transform: rotate(360deg); }
+}
+
+/* OVERLAY */
+.overlay{
+  display: none;
+  height: 100%;
+  width: 100%;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  background-color: rgba(0,0,0, 0.9); /* Black w/opacity */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  transition: 0.5s; 
+}
+.overlay h3{
+  z-index: 2;
+  font-size: 16px;
+  color: #FFF;
+  top: 47%;
+  left: 47%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+}
+
+@media only screen and (max-width: 46.875em){
+  .form-inline{
+    width: auto;
+  }
+  .overlay h3{
+    left: 30%;
+  }
+}
