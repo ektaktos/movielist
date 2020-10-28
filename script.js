@@ -101,7 +101,7 @@ function searchMovie(page = null){
   if (!page) {
     page = 1;
   }
-  $.get(`https://moviedb-test.herokuapp.com/api/search?page=${page}&text=${this.query}`, (res) => {
+  $.get(`https://moviedb-test.herokuapp.com/api/search?page=${page}&q=${this.query}`, (res) => {
     this.currentPage = page;
     this.totalPages = res.data.total_pages;
     this.totalResults = res.data.total_results; 
